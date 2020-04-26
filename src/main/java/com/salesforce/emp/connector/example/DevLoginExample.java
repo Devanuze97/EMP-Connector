@@ -17,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
+
+import com.devanuze.events.EventListener;
 import org.eclipse.jetty.util.ajax.JSON;
 
 import static org.cometd.bayeux.Channel.*;
@@ -47,13 +49,22 @@ public class DevLoginExample {
         BayeuxParameters params = tokenProvider.login();
 
         EmpConnector connector = new EmpConnector(params);
-        LoggingListener loggingListener = new LoggingListener(true, true);
 
-        connector.addListener(META_HANDSHAKE, loggingListener)
+        //LoggingListener loggingListener = new LoggingListener(true, true);
+
+/*        connector.addListener(META_HANDSHAKE, loggingListener)
                 .addListener(META_CONNECT, loggingListener)
                 .addListener(META_DISCONNECT, loggingListener)
                 .addListener(META_SUBSCRIBE, loggingListener)
-                .addListener(META_UNSUBSCRIBE, loggingListener);
+                .addListener(META_UNSUBSCRIBE, loggingListener);*/
+
+        EventListener eventListener = new EventListener();
+
+        connector.addListener(META_HANDSHAKE, eventListener)
+                .addListener(META_CONNECT, eventListener)
+                .addListener(META_DISCONNECT, eventListener)
+                .addListener(META_SUBSCRIBE, eventListener)
+                .addListener(META_UNSUBSCRIBE, eventListener);
 
         connector.setBearerTokenProvider(tokenProvider);
 

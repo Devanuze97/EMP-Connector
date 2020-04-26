@@ -29,6 +29,9 @@ public class LoggingListener implements ClientSessionChannel.MessageListener {
             System.out.println("Success:[" + clientSessionChannel.getId() + "]");
             System.out.println(message);
             System.out.println("<<<<");
+
+            //THis is where successfull messages are handled from
+            // Potentially add logic here to send to new microservie
         }
 
         if (logFailure && !message.isSuccessful()) {
