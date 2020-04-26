@@ -50,21 +50,13 @@ public class DevLoginExample {
 
         EmpConnector connector = new EmpConnector(params);
 
-        //LoggingListener loggingListener = new LoggingListener(true, true);
+        LoggingListener loggingListener = new LoggingListener(true, true);
 
-/*        connector.addListener(META_HANDSHAKE, loggingListener)
+        connector.addListener(META_HANDSHAKE, loggingListener)
                 .addListener(META_CONNECT, loggingListener)
                 .addListener(META_DISCONNECT, loggingListener)
                 .addListener(META_SUBSCRIBE, loggingListener)
-                .addListener(META_UNSUBSCRIBE, loggingListener);*/
-
-        EventListener eventListener = new EventListener();
-
-        connector.addListener(META_HANDSHAKE, eventListener)
-                .addListener(META_CONNECT, eventListener)
-                .addListener(META_DISCONNECT, eventListener)
-                .addListener(META_SUBSCRIBE, eventListener)
-                .addListener(META_UNSUBSCRIBE, eventListener);
+                .addListener(META_UNSUBSCRIBE, loggingListener);
 
         connector.setBearerTokenProvider(tokenProvider);
 
