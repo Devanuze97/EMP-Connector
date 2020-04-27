@@ -9,7 +9,7 @@
     <url>https://github.com/forcedotcom/EMP-Connector</url>
 
     <properties>
-        <module.main.class>com.salesforce.emp.connector.example.LoginExample</module.main.class>
+        <module.main.class>com.devanuze.login.DevLogin</module.main.class>
     </properties>
 
     <licenses>
