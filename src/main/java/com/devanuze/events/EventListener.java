@@ -10,14 +10,14 @@ import java.util.Date;
 
 public class EventListener implements ClientSessionChannel.MessageListener {
 
+    EventHandler eventHandler = new EventHandler();
+
     @Override
     public void onMessage(ClientSessionChannel clientSessionChannel, Message message) {
         if (message.isSuccessful()) {
             printPrefix();
-            System.out.println("{");
-            System.out.println(clientSessionChannel.getId()); //eg id: /meta/connect
-            System.out.println(message);
-            System.out.println("}");
+            eventHandler.handleEvent(message);
+
         }
     }
 
