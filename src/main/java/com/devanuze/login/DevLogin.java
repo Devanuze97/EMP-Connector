@@ -35,8 +35,10 @@ public class DevLogin {
 
         BayeuxParameters params = tokenProvider.login();
 
+        //Use EmpConnector as connecter to Salesforce Cometd
         EmpConnector connector = new EmpConnector(params);
 
+        //Use Devanuze eventListener for parsing events
         EventListener eventListener = new EventListener();
 
         connector.addListener(META_HANDSHAKE, eventListener)
